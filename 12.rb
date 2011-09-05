@@ -12,37 +12,71 @@ end
 
 def count_divisors(num)
 
-	divis = 1
+	divis = 0
+	sqrt = Math.sqrt(num)
+	upper= Math.sqrt(num).ceil.to_i
 	
-	if num.even? then upper_bound = num/2 
-	else upper_bound = num/2 + 1
+	(1...upper).each do |i|
+		#print "i =", i, " divis = ", divis, " upper_bound =", upper, "\n"
+		if (num % i == 0) then divis = divis + 2 end
 	end
 	
-	(1..upper_bound).each do |i|
-	#print "i =", i, " divis = ", divis, " upper_bound =", upper_bound, "\n"
-		if (num % i == 0) then divis = divis + 1 end
-	end
-	
-	#print "num =", num, " divis =", divis, "\n"
-	return divis
+	if (num % sqrt == 0) then divis = divis + 1 end
+		#print "     divis = ", divis, " sqrt =", sqrt, " upper =", upper, "\n"
+	divis
 	
 end
 
-def find_val(limit)
+##############################
+
+def each_triangle
+	i = 1
+	last_triangle = 0
+  loop do
+  	triangle = (i == 1) ? 1 : last_triangle + i
+  	yield triangle
+  	last_triangle = triangle
+  	i += 1
+  end
+end
+
+each_triangle() do |t|
+  if count_divisors(t) > 500
+		puts t
+		exit
+	end
+end
+
+##############################
+
+#(1..40).each do |i|
+#	print "(",i,",",count_divisors(i),")\n"
+#end
+
+def find_val(start, limit)
 	mew = triangle_gen(limit)
 
-	(400..500).each do |i|
-		if (count_divisors(mew[i]) > 6) then
+	i = start
+	
+	#mew.each_with_index do |num, i|
+	#	print "i = ", i ,", triangle = ", num, ", divisors =", count_divisors(num), "\n"
+	#end
+	
+	loop do 
+		i += 1
+		
+		print "i = ", i ,", triangle = ", mew[i], ", divisors =", count_divisors(mew[i]), "\n"
+		
+		if count_divisors(mew[i]) > 500 then
 			return mew[i]
-			break
-		else
-			return "Nope."
 		end
 	end
+	
 end
 
-puts find_val(10000).inspect
-			
+#puts find_val(5000,1000000).inspect
+
+		
 		
 		
 	

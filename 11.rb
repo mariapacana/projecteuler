@@ -19,39 +19,116 @@ grid = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
 
-nums = grid.split(" ")
-nums = nums.map {|j| j.to_i}
+nums = grid.split("\n")
+nums = nums.map {|j| j.split " "}
+nums = nums.map {|j| j.map {|i| i.to_i}}
 
-def greatest_h(array)
+puts nums.inspect
+#puts nums[1][1].inspect
+
+def greatest_h(aofa)
 	i = 0
+	
 	greatest = 0
-	while i < array.length - 3
-	  product = array[i]*array[i+1]*array[i+2]*array[i+3]
-	  print "i = ",i,", product = ", product, ", greatest = ", greatest, "\n"
-		if product > greatest then
-			greatest = product
+	
+	ylen = aofa.length - 3
+	xlen = aofa[0].length - 3
+	
+	while i < ylen
+		j = 0
+		while j < xlen 
+			if greatest < aofa[i][j]*aofa[i][j+1]*aofa[i][j+2]*aofa[i][j+3] then
+				greatest = aofa[i][j]*aofa[i][j+1]*aofa[i][j+2]*aofa[i][j+3]
+				puts greatest
+			end
+    #print "i = ",i,", j = ",j,"\n"
+		j = j + 1
 		end
 		i = i + 1
 	end
+		
 	return greatest
+	
 end
 
-def greatest_v(array)
-	i = 0
+def greatest_v(aofa)
+	j = 0
+	
 	greatest = 0
-	while i < array.length - 3
-	  product = array[i]*array[i+1]*array[i+2]*array[i+3]
-	  print "i = ",i,", product = ", product, ", greatest = ", greatest, "\n"
-		if product > greatest then
-			greatest = product
+	
+	ylen = aofa.length - 3
+	xlen = aofa[0].length - 3
+	
+	while j < xlen
+		i = 0
+		while i < ylen 
+			if greatest < aofa[i][j]*aofa[i+1][j]*aofa[i+2][j]*aofa[i+3][j] then
+				greatest = aofa[i][j]*aofa[i+1][j]*aofa[i+2][j]*aofa[i+3][j] 
+				puts greatest
+			end
+	  #print "i = ",i,", j = ",j,"\n"		
+		i = i + 1
+		end
+		j = j + 1
+	end
+		
+	return greatest
+	
+end
+
+def greatest_slantup(aofa)
+	i = 3
+	
+	greatest = 0
+	
+	ylen = aofa.length - 3
+	xlen = aofa[0].length - 3
+	
+	while i < ylen
+		j = 0
+		while j < xlen 
+			if greatest < aofa[i][j]*aofa[i-1][j+1]*aofa[i-2][j+2]*aofa[i-3][j+3] then
+				greatest = aofa[i][j]*aofa[i-1][j+1]*aofa[i-2][j+2]*aofa[i-3][j+3]  
+				puts greatest
+			end
+		#print "i = ",i,", j = ",j,"\n"
+		j = j + 1
 		end
 		i = i + 1
 	end
+		
 	return greatest
+	
+end
+
+def greatest_slantdown(aofa)
+	i = 3
+	
+	greatest = 0
+	
+	ylen = aofa.length - 3
+	xlen = aofa[0].length - 3
+	
+	while i < ylen
+		j = 0
+		while j < xlen 
+			if greatest < aofa[i][j]*aofa[i-1][j+1]*aofa[i-2][j+2]*aofa[i-3][j+3] then
+				greatest = aofa[i][j]*aofa[i-1][j+1]*aofa[i-2][j+2]*aofa[i-3][j+3]  
+				puts greatest
+			end
+		#print "i = ",i,", j = ",j,"\n"
+		j = j + 1
+		end
+		i = i + 1
+	end
+		
+	return greatest
+	
 end
 
 puts greatest_h(nums)
-	
+#puts greatest_slantup(nums)
+
 		
 		
 		
