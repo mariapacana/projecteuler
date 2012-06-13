@@ -1,22 +1,50 @@
+def binarygen (diglen)
+    allnums = Array.new
 
+    if (diglen == 1)
+        allnums = ["0","1"] 
+ 
+    else
+       ones = Array.new
+       zeroes = Array.new
+       i = 0
+          
+         while i < binarygen(diglen-1).length
+            ones << binarygen(diglen-1)[i] + "1"
+            zeroes << binarygen(diglen-1)[i] + "0"
+            allnums = ones + zeroes
+            i = i + 1
+          end
+      end
+    return allnums
+end
 
-..every possible permutation (unique arrangement) of two R's and two D's.
+def countones (str)
+   i = 0
+   numones = 0
+   while i < str.length
+      if (str[i].to_i-48 == 1)
+         numones = numones + 1
+      end
+      i = i + 1
+   end
+  return numones
+end
 
-OK:
-RRDD    
-RDRD
-RDDR
+def countnums(arr, size)
+  i = 0
+  numnums = 0
+  while i < arr.length
+     if (countones(arr[i]) == size)
+         numnums = numnums + 1
+     end
+     i = i+1
+  end
+  return numnums
+end
 
-DDRR
-DRDR
-DRRD
+mew = Array.new
+mew =binarygen(6)
+puts mew
 
-NOT-OK:
-DDDD
-DRRR
-RRRD
-RRRR
-
-These are symmetrical
-
-
+#puts countnums(mew,20)
