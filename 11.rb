@@ -1,4 +1,5 @@
-grid = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
+grid = 
+"08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
 52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
@@ -23,25 +24,25 @@ nums = grid.split("\n")
 nums = nums.map {|j| j.split " "}
 nums = nums.map {|j| j.map {|i| i.to_i(10)}}
 
+puts nums.inspect
+puts nums[1][1].inspect
+
 #dx, dy = [1, -1]. (xmin, xmax) = (0, xlen - 3). (ymin, ymax) = (3, ylen)
 #dx, dy = [-1, 1]. (xmin, xmax) = (0, xlen - 3). (ymin, ymax) = (3, ylen)
 #dx, dy = [1, 0]. (xmin, xmax) = (0, xlen - 3). (ymin, ymax) = (0, ylen)
 #dx, dy = [0, 1]. (xmin, xmax) = (0, xlen). (ymin, ymax) = (0, ylen - 3)
-
-puts nums.inspect
-#puts nums[1][1].inspect
 
 def greatest(aofa, dx, dy)
 	
 	ylen = aofa.length - 3
 	xlen = aofa[0].length - 3
 	
-	when ((dx == 1) and (dy == 0)) 
+	if((dx == 1) and (dy == 0)) 
 		xmin = 0
 		xmax = xlen - 3
 		ymin = 0
 		ymax = ylen
-	when ((dx == 0) and (dy == 1))
+	elsif ((dx == 0) and (dy == 1))
 		xmin = 0
 		xmax = xlen 
 		ymin = 0
@@ -61,9 +62,9 @@ def greatest(aofa, dx, dy)
 		while j < xmax
 			if greatest < aofa[i][j]*aofa[i+dy][j+dx]*aofa[i+2*dy][j+2*dx]*aofa[i+3*dy][j+3*dx] then
 				greatest = aofa[i][j]*aofa[i+dy][j+dx]*aofa[i+2*dy][j+2*dx]*aofa[i+3*dy][j+3*dx]
-				puts greatest
+				#puts greatest
 			end
-    print "i = ",i,", j = ",j,"\n"
+    #print "i = ",i,", j = ",j,"\n"
 		j = j + 1
 		end
 		i = i + 1
@@ -73,11 +74,11 @@ def greatest(aofa, dx, dy)
 	
 end
 
-#puts greatest(nums,0,1)
-#puts greatest(nums,1,0)
-#puts greatest(nums,1,-1)
-#puts greatest(nums,-1,1)
-		
+puts greatest(nums,0,1)
+puts greatest(nums,1,0)
+puts greatest(nums,1,-1)
+puts greatest(nums,-1,1)
+
 		
 		
 		
