@@ -27,7 +27,7 @@ def allnums (rounds, teens, singles)
     end
   end
   
-  allnums << "one thousand"
+  allnums << "onethousand"
 
   allnums
 end
