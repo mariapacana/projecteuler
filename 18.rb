@@ -39,7 +39,7 @@ def maxsum(array)
   end
   new_tri.reverse!
   
-  puts new_tri.inspect
+  #puts new_tri.inspect
   
   i = 1
   while i < length

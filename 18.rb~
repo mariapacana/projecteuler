@@ -65,5 +65,5 @@ def maxsum(array)
   puts new_tri[length-1][0]
 end
 
-maxsum(triangle3)
+maxsum(triangle)
 
