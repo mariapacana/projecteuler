@@ -10,7 +10,7 @@ def summation(stops,max_stops)
       sum << [i,stops-i].sort
     end
   else
-    (1..10).each do |i|
+    (1..max_stops).each do |i|
       for j in summation(stops-i)
         sum << [i,j].flatten.sort
       end
@@ -20,18 +20,18 @@ def summation(stops,max_stops)
   sum.sort
 end
 
-def min_cost(fares,stops)
-  routes = summation(stops)
-  fares = fares.split(" ").map {|i| i.to_i}
-  cost = []
+# def min_cost(fares,stops)
+#   routes = summation(stops)
+#   fares = fares.split(" ").map {|i| i.to_i}
+#   cost = []
   
-  for r in routes
-    cost << r.zip(fares).map{|i,j| i*j }.inject(:+)
-  end
+#   for r in routes
+#     cost << r.zip(fares).map{|i,j| i*j }.inject(:+)
+#   end
   
-  p cost
-  cost.min
-end
+#   p cost
+#   cost.min
+# end
 
 #puts min_cost(fares1,stops1)
-puts summation(9).inspect
+puts summation(5,5).inspect

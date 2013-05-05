@@ -28,16 +28,16 @@ triangle4 = File.read('triangle.txt')
 
 
 def trify(string)
-  new_tri = Array.new
-  new_tri = string.split("\n")
-  length = new_tri.length
-  (0..length-1).each do |i|
-    new_tri[i] = new_tri[i].split(" ").collect{|i| i.to_i}
-  end
-  new_tri.reverse!
+new_tri = Array.new
+new_tri = string.split("\n")
+length = new_tri.length
+(0..length-1).each do |i|
+new_tri[i] = new_tri[i].split(" ").collect{|i| i.to_i}
+end
+new_tri.reverse!
 end
 
-def maxsum(array)
+def maxsum(tri)
   sum = 0
 
   mini_tri_1 = [[0,0],[0]]

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+#git thing
 triangle1 = "3
 7 4"
 
