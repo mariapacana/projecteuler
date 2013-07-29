@@ -1,4 +1,4 @@
-#broken?
+# #broken?
 
 def collatz(num)
 	mew = Array.new
@@ -8,12 +8,12 @@ def collatz(num)
 	end
 end
 
-(2..12).each do |i|
-  print "(",i,",",collatz(i).inspect,",",collatz(i).length,")\n"
-  print "(",i,",",collatz(i).length,")\n"
-end
+# (2..12).each do |i|
+#   print "(",i,",",collatz(i).inspect,",",collatz(i).length,")\n"
+#   print "(",i,",",collatz(i).length,")\n"
+# end
 
-=begin
+
 longest = 0
 starting = 0
 (2..1000000).each do |i|
@@ -25,5 +25,5 @@ end
 
 print "longest = ",starting,"\n"
 
-=end
+
      
