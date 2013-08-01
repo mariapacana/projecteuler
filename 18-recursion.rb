@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-#git thing
 triangle1 = "3
 7 4"
 
@@ -27,15 +26,14 @@ triangle3 = "75
 
 triangle4 = File.read('triangle.txt')
 
-
 def trify(string)
-new_tri = Array.new
-new_tri = string.split("\n")
-length = new_tri.length
-(0..length-1).each do |i|
-new_tri[i] = new_tri[i].split(" ").collect{|i| i.to_i}
-end
-new_tri.reverse!
+  new_tri = Array.new
+  new_tri = string.split("\n")
+  length = new_tri.length
+  (0..length-1).each do |i|
+    new_tri[i] = new_tri[i].split(" ").collect{|i| i.to_i}
+  end
+  new_tri.reverse!
 end
 
 def maxsum(tri)
@@ -63,25 +61,25 @@ def maxsum(tri)
       end          
     end
   else
-    (2..length-1).each do |i|
-      (0..length).each do |j|
-        if new_tri[i][j]
-          if (i == 2)
-            mini_tri_1 = [[new_tri[[i-2][j],new_tri[i-2][j+1]],[new_tri[i-1][j]]]
-            mini_tri_2 = [[new_tri[i-2][j+1],new_tri[i-2][j+2]],[new_tri[i-1][j+1]]]
+    # (2..length-1).each do |i|
+    #   (0..length).each do |j|
+    #     if new_tri[i][j]
+    #       if (i == 2)
+    #         mini_tri_1 = [[new_tri[[i-2][j],new_tri[i-2][j+1]],[new_tri[i-1][j]]]
+    #         mini_tri_2 = [[new_tri[i-2][j+1],new_tri[i-2][j+2]],[new_tri[i-1][j+1]]]
             
-          if (new_tri[i-1][j] > new_tri[i-1][j+1]) 
-            #print "new_tri[i][j] = "+new_tri[i][j].to_s+", new_tri[i-1][j] = "+new_tri[i-1][j].to_s+"\n"
-            new_tri[i][j] = new_tri[i][j] + new_tri[i-1][j] 
-            puts new_tri[i][j]
-          else
-            #print "new_tri[i][j] = "+new_tri[i][j].to_s+", new_tri[i-1][j-1] = "+new_tri[i-1][j-1].to_s+"\n"
-            new_tri[i][j] = new_tri[i][j]+new_tri[i-1][j+1]
-            puts new_tri[i][j]
-         end
-        
-        end
-      end
+    #         if (new_tri[i-1][j] > new_tri[i-1][j+1]) 
+    #           #print "new_tri[i][j] = "+new_tri[i][j].to_s+", new_tri[i-1][j] = "+new_tri[i-1][j].to_s+"\n"
+    #           new_tri[i][j] = new_tri[i][j] + new_tri[i-1][j] 
+    #           puts new_tri[i][j]
+    #         else
+    #           #print "new_tri[i][j] = "+new_tri[i][j].to_s+", new_tri[i-1][j-1] = "+new_tri[i-1][j-1].to_s+"\n"
+    #           new_tri[i][j] = new_tri[i][j]+new_tri[i-1][j+1]
+    #           puts new_tri[i][j]
+    #        end
+    #       end
+    #     end
+    #   end
     end
   end
   
@@ -91,4 +89,3 @@ def maxsum(tri)
 end
 
 maxsum(triangle1)
-

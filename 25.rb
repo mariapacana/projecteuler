@@ -6,7 +6,6 @@ def make_fibo
 	
   loop do
   	fb[i] = (i == 1) ? 1 : ((i == 2) ? 1 : fb[i-1] + fb[i-2])
-  	#puts fb[i]
   	yield fb[i], i
   	i += 1
   end
