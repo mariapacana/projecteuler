@@ -26,6 +26,11 @@ triangle3 = "75
 
 triangle4 = File.read('triangle.txt')
 
+# Converts the string above into an array of arrays representing the triangle.
+# The base of the triangle is the first array (so the triangle is upside-down).
+
+# E.g., triangle2 would be [[8, 5, 9, 3], [2, 4, 6], [7, 4], [3]]
+
 def trify(string)
   new_tri = Array.new
   new_tri = string.split("\n")
@@ -36,56 +41,55 @@ def trify(string)
   new_tri.reverse!
 end
 
+# For use in the recursive version. This is the left sub-triangle.
+# E.g., for triangle 2, it would be:
+# 7 
+# 2 4
+# 8 5 9
+
+def left_tri(tri)
+
+end
+
+# For use in the recursive version. This is the right sub-triangle.
+# E.g., for triangle 2, it would be:
+# 4
+# 4 6
+# 5 9 3 
+def right_tri(tri)
+
+end
+
 def maxsum(tri)
   sum = 0
 
-  mini_tri_1 = [[0,0],[0]]
-  mini_tri_2 = [[0,0],[0]]
+  new_tri = trify(tri)
   
-  puts new_tri.inspect
-  puts mini_tri_2.inspect
-  
-  if (length == 2)
+  if (new_tri.length == 2)
     (0..1).each do |j|
       #print i.to_s+","+j.to_s+"\n"
       if new_tri[1][j]
         if (new_tri[0][j] > new_tri[0][j+1]) 
           #print "new_tri[1][j] = "+new_tri[1][j].to_s+", new_tri[i-1][j] = "+new_tri[i-1][j].to_s+"\n"
           new_tri[1][j] = new_tri[1][j] + new_tri[0][j] 
-          puts new_tri[1][j]
         else
           #print "new_tri[1][j] = "+new_tri[1][j].to_s+", new_tri[i-1][j-1] = "+new_tri[i-1][j-1].to_s+"\n"
           new_tri[1][j] = new_tri[1][j]+new_tri[0][j+1]
-          puts new_tri[1][j]
         end
       end          
     end
   else
-    # (2..length-1).each do |i|
-    #   (0..length).each do |j|
-    #     if new_tri[i][j]
-    #       if (i == 2)
-    #         mini_tri_1 = [[new_tri[[i-2][j],new_tri[i-2][j+1]],[new_tri[i-1][j]]]
-    #         mini_tri_2 = [[new_tri[i-2][j+1],new_tri[i-2][j+2]],[new_tri[i-1][j+1]]]
-            
-    #         if (new_tri[i-1][j] > new_tri[i-1][j+1]) 
-    #           #print "new_tri[i][j] = "+new_tri[i][j].to_s+", new_tri[i-1][j] = "+new_tri[i-1][j].to_s+"\n"
-    #           new_tri[i][j] = new_tri[i][j] + new_tri[i-1][j] 
-    #           puts new_tri[i][j]
-    #         else
-    #           #print "new_tri[i][j] = "+new_tri[i][j].to_s+", new_tri[i-1][j-1] = "+new_tri[i-1][j-1].to_s+"\n"
-    #           new_tri[i][j] = new_tri[i][j]+new_tri[i-1][j+1]
-    #           puts new_tri[i][j]
-    #        end
-    #       end
-    #     end
-    #   end
+    (2..new_tri.length-1).each do |i|
+      (0..new_tri.length).each do |j|
+        if new_tri[i][j]
+          # Take the greater of maxsum(left_tri(tri)) or maxsum(right_tri(tri))
+          # and add it to new_tri[i][j]
+        end
+      end
     end
   end
   
-  
-  
-  puts new_tri[length-1][0]
+  # puts new_tri[length-1][0]
 end
 
-maxsum(triangle1)
+p trify(triangle2)
