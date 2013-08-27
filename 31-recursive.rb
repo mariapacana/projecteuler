@@ -13,8 +13,13 @@ def pretty_print(target, coins, max_coin, memo)
   p "target = #{target}, coins = #{coins.inspect}, max_coin = #{max_coin}, memo = #{memo.inspect}"
 end
 
+# i don't see where you're actually using "memo" to look up counts that you already computed. 
+# i'd expect the top of count() to check whether "memo" already contains the answer and 
+# return it from there instead of recursing.
 def count(target, coins, max_coin, memo)
-  pretty_print(target, coins, max_coin, memo)
+  # pretty_print(target, coins, max_coin, memo)
+
+  return memo[[target, max_coin]] if memo[[target, max_coin]] 
 
   num_ways = 0
   if target < 1

@@ -25,20 +25,25 @@ triangle3 = "75
 63 66 04 68 89 53 67 30 73 16 69 87 40 31
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"
 
-triangle4 = File.read('triangle.txt')
+# Download from http://projecteuler.net/project/triangle.txt
+# triangle4 = File.read('triangle.txt')
+
+def build_triangle_row(row)
+  row.split(" ").collect{|elem| elem.to_i } 
+end
+
+def build_triangle(array)
+  new_tri = array.split("\n")
+  new_tri.map! { |row| build_triangle_row(row)}
+  new_tri.reverse!
+end
 
 def maxsum(array)
   sum = 0
   
-  new_tri = Array.new
-  new_tri = array.split("\n")
+  new_tri = build_triangle(array)
   length = new_tri.length
-  (0..length-1).each do |i|
-    new_tri[i] = new_tri[i].split(" ").collect{|i| i.to_i}
-  end
-  new_tri.reverse!
-  
-  
+
   i = 1
   while i < length
     j = 0
@@ -55,8 +60,7 @@ def maxsum(array)
     i += 1
   end
   
-  puts new_tri[length-1][0]
+  new_tri[length-1][0]
 end
 
-maxsum(triangle4)
-
+p maxsum(triangle3)
